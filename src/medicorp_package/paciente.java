@@ -1,6 +1,5 @@
 package medicorp_package;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -13,6 +12,7 @@ public class paciente {
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.socio_id = socio_total;
+		this.fechaAlta = new Date(System.currentTimeMillis());
 		socio_total++;
 	}
 
@@ -34,6 +34,9 @@ public class paciente {
 	public GregorianCalendar getBirthDate() {
 		return fechaNacimiento;
 	}
+	public Date getCreateDate() {
+		return fechaAlta;
+	}
 	public static int getSocioTotal() {
 		return socio_total;
 	}
@@ -42,6 +45,7 @@ public class paciente {
 	private String apellido;
 	private String nombre;
 	private GregorianCalendar fechaNacimiento;
+	private Date fechaAlta;
 	private int socio_id;
 	private static int socio_total;
 
