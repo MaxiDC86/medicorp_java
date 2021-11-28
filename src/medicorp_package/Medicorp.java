@@ -5,9 +5,15 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 import javax.swing.*;
-
 
 public class Medicorp {
 	public static void main(String[] args) {
@@ -33,8 +39,13 @@ class miMarco extends JFrame {
 	}
 }
 
-class Lamina extends JPanel {
+class Lamina extends JPanel{
 
+	private static ArrayList<paciente> losPacientes = new ArrayList<paciente>();
+	private int dni;
+	private String apellido;
+	private String nombre;
+	private GregorianCalendar fechaNacimiento = new GregorianCalendar();
 	private static final long serialVersionUID = 1L;
 	JButton botonListar = new JButton("Listar Pacientes");
 	JButton botonAlta = new JButton("Alta de Pacientes");
@@ -56,6 +67,7 @@ class Lamina extends JPanel {
 
 	private class listar_pacientes implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			losPacientes = readFromFile();
 			if (losPacientes.isEmpty()) {
 				user_comunication.setText("No hay pacientes cargados.");
 			} else {
@@ -93,11 +105,9 @@ class Lamina extends JPanel {
 				System.out.println(fechaNacimiento.getTime());
 				paciente socio = new paciente(dni, apellido, nombre, fechaNacimiento); // Se da de alta un nuevo socio
 				losPacientes.add(paciente.getSocioTotal() - 1, socio);
-				//-------------------------------------------------Saving the patient info to a file.
-				
-				
-				
-				
+				// -------------------------------------------------Saving to file
+				saveToFile(losPacientes);
+
 				System.out.println("Se da de alta un paciente");
 				JOptionPane.showMessageDialog(null, "Paciente dado de alta satisfactoriamente.");
 			} catch (dni_validation e1) {
@@ -117,14 +127,36 @@ class Lamina extends JPanel {
 			}
 		}
 	}
-	
-	
 
-	private static ArrayList<paciente> losPacientes = new ArrayList<paciente>();
-	private int dni;
-	private String apellido;
-	private String nombre;
-	private GregorianCalendar fechaNacimiento = new GregorianCalendar();
+
+	public ArrayList<paciente> readFromFile() {
+		try {
+			ObjectInputStream leyendo_fichero;
+			leyendo_fichero = new ObjectInputStream(new FileInputStream("./src/medicorp_package/patients.ser"));
+			losPacientes = (ArrayList<paciente>) leyendo_fichero.readObject();
+			leyendo_fichero.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return losPacientes;
+	}
+
+	public void saveToFile(ArrayList<paciente> losPacientes) {
+		try {
+			ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(
+					new FileOutputStream("./src/medicorp_package/patients.ser"));
+			escribiendo_fichero.writeObject(losPacientes);
+			escribiendo_fichero.close();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		
+	}
 
 }
 

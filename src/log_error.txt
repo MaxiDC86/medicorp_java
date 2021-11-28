@@ -4,3 +4,5 @@ Error: dato ingresado es inválido.Fri Nov 26 09:39:35 ART 2021
 Error: dato ingresado es inválido.Fri Nov 26 09:55:25 ART 2021
 Error: dato ingresado es inválido.Fri Nov 26 10:33:56 ART 2021
 Error: dato ingresado es inválido.Fri Nov 26 10:34:07 ART 2021
+El DNI ingresado es inválidoSat Nov 27 23:15:05 ART 2021
+Error: dato ingresado es inválido.Sat Nov 27 23:53:31 ART 2021

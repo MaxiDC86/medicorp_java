@@ -1,9 +1,11 @@
 package medicorp_package;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class paciente {
+public class paciente implements Serializable {
+
 
 	paciente(int dni, String apellido, String nombre, GregorianCalendar fechaNacimiento) {
 
