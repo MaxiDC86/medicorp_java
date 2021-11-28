@@ -93,6 +93,11 @@ class Lamina extends JPanel {
 				System.out.println(fechaNacimiento.getTime());
 				paciente socio = new paciente(dni, apellido, nombre, fechaNacimiento); // Se da de alta un nuevo socio
 				losPacientes.add(paciente.getSocioTotal() - 1, socio);
+				//-------------------------------------------------Saving the patient info to a file.
+				
+				
+				
+				
 				System.out.println("Se da de alta un paciente");
 				JOptionPane.showMessageDialog(null, "Paciente dado de alta satisfactoriamente.");
 			} catch (dni_validation e1) {
@@ -112,6 +117,8 @@ class Lamina extends JPanel {
 			}
 		}
 	}
+	
+	
 
 	private static ArrayList<paciente> losPacientes = new ArrayList<paciente>();
 	private int dni;
