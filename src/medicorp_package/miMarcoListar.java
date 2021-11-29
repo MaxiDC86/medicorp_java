@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 
 class miMarcoListar extends JFrame {
 	public miMarcoListar(ArrayList<paciente> losPacientes) {
-		setBounds(100, 300, 800, 400);
+		setBounds(700, 200, 800, 400);
 		setTitle("MEDICORP SOLUTIONS - LISTADO DE PACIENTES");
 		Toolkit mipantalla = Toolkit.getDefaultToolkit();
 		Image miIcono = mipantalla.getImage("src/images/crocodile.png");
@@ -42,5 +42,5 @@ class miMarcoListar extends JFrame {
 	}
 
 	private JTextArea areaTexto;
-	private static final long serialVersionUID = 42L;
+	private static final long serialVersionUID = 1L;
 }

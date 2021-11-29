@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.*;
 import javax.swing.*;
 
@@ -28,7 +27,7 @@ class miMarco extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public miMarco() {
-		setBounds(700, 300, 600, 300);
+		setBounds(300, 100, 600, 100);
 		setTitle("Bienvenidos a MEDICORP SOLUTIONS");
 		setResizable(false);
 		Lamina milamina = new Lamina();
@@ -62,6 +61,7 @@ class Lamina extends JPanel{
 		add(user_comunication);
 		botonListar.addActionListener(new listar_pacientes());
 		botonAlta.addActionListener(new alta_pacientes());
+		botonBuscar.addActionListener(new buscar_pacientes());
 		setBackground(new Color(26, 105, 150));
 	}
 
@@ -128,7 +128,17 @@ class Lamina extends JPanel{
 		}
 	}
 
+	private class buscar_pacientes implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MiMarcoBuscar mimarco3 = new MiMarcoBuscar();
+			mimarco3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+		
+	}
+
+	@SuppressWarnings("unchecked")
 	public ArrayList<paciente> readFromFile() {
 		try {
 			ObjectInputStream leyendo_fichero;

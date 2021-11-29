@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 
 public class paciente implements Serializable {
 
-
+	private static final long serialVersionUID = 1L;
 	paciente(int dni, String apellido, String nombre, GregorianCalendar fechaNacimiento) {
 
 		this.dni = dni;

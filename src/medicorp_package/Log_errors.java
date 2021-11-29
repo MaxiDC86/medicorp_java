@@ -9,7 +9,7 @@ class Log_errors {
 
 	public void write(String error_message) {
 		fechaError = new Date(System.currentTimeMillis());
-		error_message = "\n" + error_message + fechaError;
+		error_message = "\n" + error_message+"  date:" + fechaError;
 		try {
 			salida = new FileWriter("./src/log_error.txt", true);
 			BufferedWriter error_buffer = new BufferedWriter(salida);
