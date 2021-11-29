@@ -38,7 +38,7 @@ class miMarco extends JFrame {
 	}
 }
 
-class Lamina extends JPanel{
+class Lamina extends JPanel {
 
 	private static ArrayList<paciente> losPacientes = new ArrayList<paciente>();
 	private int dni;
@@ -52,7 +52,7 @@ class Lamina extends JPanel{
 	JButton botonTurnoAlta = new JButton("Alta de Turno");
 	private JLabel user_comunication = new JLabel();
 	Log_errors error = new Log_errors();
-	
+
 	public Lamina() {
 		add(botonListar);
 		add(botonAlta);
@@ -128,14 +128,19 @@ class Lamina extends JPanel{
 		}
 	}
 
-	private class buscar_pacientes implements ActionListener{
+	private class buscar_pacientes implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			MiMarcoBuscar mimarco3 = new MiMarcoBuscar();
-			mimarco3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			losPacientes = readFromFile();
+			if (losPacientes.isEmpty()) {
+				user_comunication.setText("No hay pacientes cargados.");
+			} else {
+				MiMarcoBuscar mimarco3 = new MiMarcoBuscar(losPacientes);
+				mimarco3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
 		}
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -165,7 +170,7 @@ class Lamina extends JPanel{
 
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
