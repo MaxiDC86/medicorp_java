@@ -71,30 +71,28 @@ class LaminaBuscar extends JPanel {
 	private class EnviarDatos implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			for (int i = 0; i < losPacientes.size(); i++) {
 
 				if (nombre.getText().equalsIgnoreCase(losPacientes.get(i).getName())) {
 					area_resultado.append("    Nombre: " + losPacientes.get(i).getName());
 					area_resultado.append("    Apellido: " + losPacientes.get(i).getLastName());
 					String dni = Integer.toString(losPacientes.get(i).getDNI());
-					area_resultado.append(" DNI: " + dni+"\n");
+					area_resultado.append(" DNI: " + dni + "\n");
 				}
 				if (apellido.getText().equalsIgnoreCase(losPacientes.get(i).getLastName())) {
 					area_resultado.append("    Nombre: " + losPacientes.get(i).getName());
 					area_resultado.append("    Apellido: " + losPacientes.get(i).getLastName());
 					String dni = Integer.toString(losPacientes.get(i).getDNI());
-					area_resultado.append(" DNI: " + dni+"\n");
+					area_resultado.append(" DNI: " + dni + "\n");
 				}
-				if(dni.getText().equals(Integer.toString(losPacientes.get(i).getDNI()))) {
+				if (dni.getText().equals(Integer.toString(losPacientes.get(i).getDNI()))) {
 					area_resultado.append("    Nombre: " + losPacientes.get(i).getName());
 					area_resultado.append("    Apellido: " + losPacientes.get(i).getLastName());
 					String dni = Integer.toString(losPacientes.get(i).getDNI());
-					area_resultado.append(" DNI: " + dni+"\n");
+					area_resultado.append(" DNI: " + dni + "\n");
 				}
-
 			}
-
 		}
 	}
 

@@ -15,3 +15,10 @@ Error: dato ingresado es inválido.Mon Nov 29 11:37:54 ART 2021
 Error: dato ingresado es inválido.  date:Mon Nov 29 11:45:06 ART 2021
 Error: dato ingresado es inválido.  date:Mon Nov 29 17:52:07 ART 2021
 Error: dato ingresado es inválido.  date:Mon Nov 29 18:20:25 ART 2021
+El DNI ingresado es inválido  date:Mon Nov 29 18:39:48 ART 2021
+Error: dato ingresado es inválido.  date:Mon Nov 29 18:49:07 ART 2021
+El DNI ingresado es inválido  date:Mon Nov 29 18:49:16 ART 2021
+Error:  El DNI ya está dado de alta.  date:Mon Nov 29 18:51:02 ART 2021
+Error: dato ingresado es inválido.  date:Mon Nov 29 23:41:21 ART 2021
+Error: dato ingresado es inválido.  date:Mon Nov 29 23:41:32 ART 2021
+Error: dato ingresado es inválido.  date:Tue Nov 30 19:34:51 ART 2021

@@ -63,6 +63,7 @@ class Lamina extends JPanel {
 		botonAlta.addActionListener(new alta_pacientes());
 		botonBuscar.addActionListener(new buscar_pacientes());
 		setBackground(new Color(26, 105, 150));
+		losPacientes = readFromFile();
 	}
 
 	private class listar_pacientes implements ActionListener {
@@ -82,8 +83,15 @@ class Lamina extends JPanel {
 			String regex = "^[a-zA-Z]+$";
 			try {
 				dni = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el DNI del paciente: "));
+				//--------------Validación de fuera de rango para el DNI
 				if (dni <= 999999 | dni > 99000000) {
-					throw new dni_validation("El DNI ingresado es inválido");
+					throw new dni_validation("El DNI ingresado es inválido (fuera de rango)");
+				}
+				//-------------Validación de existencia para el DNI
+				for (int i = 0; i < losPacientes.size(); i++) {
+					if (dni == losPacientes.get(i).getDNI()) {
+						throw new dni_validation("El DNI ya está dado de alta.");
+					}
 				}
 				apellido = JOptionPane.showInputDialog("Ingrese el apellido del paciente: ");
 				if (apellido.matches(regex)) {// ...
@@ -112,7 +120,7 @@ class Lamina extends JPanel {
 				JOptionPane.showMessageDialog(null, "Paciente dado de alta satisfactoriamente.");
 			} catch (dni_validation e1) {
 				user_comunication.setText("Error:  " + e1.getMessage());
-				error.write("El DNI ingresado es inválido");
+				error.write("Error:  " + e1.getMessage());
 			} catch (IllegalArgumentException e2) {
 				user_comunication.setText("Error: dato ingresado es inválido.");
 				error.write("Error: dato ingresado es inválido.");
