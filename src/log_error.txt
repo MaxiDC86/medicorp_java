@@ -4,3 +4,7 @@ Error: dato ingresado es inválido.Fri Nov 26 09:39:35 ART 2021
 Error: dato ingresado es inválido.Fri Nov 26 09:55:25 ART 2021
 Error: dato ingresado es inválido.Fri Nov 26 10:33:56 ART 2021
 Error: dato ingresado es inválido.Fri Nov 26 10:34:07 ART 2021
+Error: dato ingresado es inválido.Tue Nov 30 19:52:30 ART 2021
+Error: dato ingresado es inválido.Tue Nov 30 19:53:57 ART 2021
+Error: dato ingresado es inválido.Tue Nov 30 19:57:22 ART 2021
+Error: dato ingresado es inválido.Tue Nov 30 20:04:48 ART 2021

@@ -1,6 +1,7 @@
 package medicorp_package;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -26,10 +27,16 @@ class miMarco extends JFrame {
 		setTitle("Bienvenidos a MEDICORP SOLUTIONS");
 		setResizable(false);
 		Lamina milamina = new Lamina();
+		
+		Runnable r = new Animation(milamina);
+		Thread t=new Thread(r);
+		t.start();
+		
 		add(milamina);
 		Toolkit mipantalla = Toolkit.getDefaultToolkit();
 		Image miIcono = mipantalla.getImage("src/images/crocodile.png");
 		setIconImage(miIcono);
+		
 	}
 }
 
@@ -52,6 +59,8 @@ class Lamina extends JPanel {
 		botonListar.addActionListener(new listar_pacientes());
 		botonAlta.addActionListener(new alta_pacientes());
 		setBackground(new Color(26, 105, 150));
+
+	
 	}
 
 	private class listar_pacientes implements ActionListener {
@@ -131,4 +140,29 @@ class dni_validation extends Exception {
 	public dni_validation(String msj_error) {
 		super(msj_error);
 	}
+}
+
+
+class Animation implements Runnable{
+	public Animation(Component milamina) {
+		
+		componente=milamina;
+	}
+
+
+	public void run() {
+		
+		componente.setBackground(Color.BLACK);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		componente.setBackground(Color.BLUE);
+
+	}
+	
+	private Component componente;
+	
 }
