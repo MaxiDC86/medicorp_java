@@ -27,7 +27,7 @@ class miMarco extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	public miMarco() {
-		setBounds(300, 100, 600, 100);
+		setBounds(300, 100, 800, 100);
 		setTitle("Bienvenidos a MEDICORP SOLUTIONS");
 		setResizable(false);
 		Lamina milamina = new Lamina();
@@ -49,7 +49,9 @@ class Lamina extends JPanel {
 	JButton botonListar = new JButton("Listar Pacientes");
 	JButton botonAlta = new JButton("Alta de Pacientes");
 	JButton botonBuscar = new JButton("Buscar Pacientes");
+	JButton botonEliminarPaciente = new JButton("Eliminar Paciente");
 	JButton botonTurnoAlta = new JButton("Alta de Turno");
+	JButton botonTurnoBaja = new JButton("Baja de Turno");
 	private JLabel user_comunication = new JLabel();
 	Log_errors error = new Log_errors();
 
@@ -57,11 +59,14 @@ class Lamina extends JPanel {
 		add(botonListar);
 		add(botonAlta);
 		add(botonBuscar);
+		add(botonEliminarPaciente);
 		add(botonTurnoAlta);
+		add(botonTurnoBaja);
 		add(user_comunication);
 		botonListar.addActionListener(new listar_pacientes());
 		botonAlta.addActionListener(new alta_pacientes());
 		botonBuscar.addActionListener(new buscar_pacientes());
+		botonEliminarPaciente.addActionListener(new eliminar_pacientes());
 		setBackground(new Color(26, 105, 150));
 		losPacientes = readFromFile();
 	}
@@ -149,6 +154,20 @@ class Lamina extends JPanel {
 			}
 		}
 
+	}
+	private class eliminar_pacientes implements ActionListener {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			losPacientes = readFromFile();
+			if (losPacientes.isEmpty()) {
+				user_comunication.setText("No hay pacientes cargados.");
+			} else {
+				MiMarcoEliminar mimarco4 = new MiMarcoEliminar(losPacientes);
+				mimarco4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			}
+		}
+		
 	}
 
 	@SuppressWarnings("unchecked")
