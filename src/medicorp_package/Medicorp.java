@@ -165,6 +165,7 @@ class Lamina extends JPanel {
 			} else {
 				MiMarcoEliminar mimarco4 = new MiMarcoEliminar(losPacientes);
 				mimarco4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
 			}
 		}
 		
@@ -187,7 +188,7 @@ class Lamina extends JPanel {
 		return losPacientes;
 	}
 
-	public void saveToFile(ArrayList<paciente> losPacientes) {
+	public static void saveToFile(ArrayList<paciente> losPacientes) {
 		try {
 			ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(
 					new FileOutputStream("./src/medicorp_package/patients.ser"));
@@ -199,6 +200,7 @@ class Lamina extends JPanel {
 		}
 
 	}
+
 
 }
 
