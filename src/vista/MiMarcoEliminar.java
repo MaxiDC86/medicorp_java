@@ -24,7 +24,7 @@ public class MiMarcoEliminar extends JFrame {
 		setIconImage(miIcono);
 		setResizable(true);
 		setVisible(true);
-		milamina = new LaminaEliminar(losPacientes);
+		//milamina = new LaminaEliminar(losPacientes);
 		add(milamina);
 
 	}
@@ -35,8 +35,8 @@ public class MiMarcoEliminar extends JFrame {
 class LaminaEliminar extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public LaminaEliminar(ArrayList<paciente> losPacientes) {
-		this.losPacientes = losPacientes;
+	public LaminaEliminar() {
+
 		setLayout(new BorderLayout());
 		JPanel lamina_superior = new JPanel();
 		JPanel lamina_centro = new JPanel();
@@ -63,49 +63,10 @@ class LaminaEliminar extends JPanel {
 
 		JButton enviar = new JButton("Eliminar");
 		enviar.setBackground(Color.GREEN);
-		enviar.addActionListener(new EliminarPaciente());
+		//enviar.addActionListener(new EliminarPaciente());
 		add(enviar, BorderLayout.SOUTH);
 	}
 
-	private class EliminarPaciente implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			boolean eliminarOk = false;
-			int dni2 = 0;
-
-			for (int i = 0; i < losPacientes.size(); i++) {
-
-				if (nombre.getText().equalsIgnoreCase(losPacientes.get(i).getName())) {
-
-					if (apellido.getText().equalsIgnoreCase(losPacientes.get(i).getLastName())) {
-
-						if (dni.getText().equals(Integer.toString(losPacientes.get(i).getDNI()))) {
-							area_resultado.append("    Nombre: " + losPacientes.get(i).getName());
-							area_resultado.append("    Apellido: " + losPacientes.get(i).getLastName());
-							String dni = Integer.toString(losPacientes.get(i).getDNI());
-							area_resultado.append(" DNI: " + dni + "\n");
-							area_resultado.append("Paciente eliminado de la base de datos");
-							eliminarOk = true;
-							dni2 = losPacientes.get(i).getDNI();
-						}
-					}
-				}
-			}
-			if (eliminarOk) {
-				Iterator<paciente> itr = losPacientes.iterator();
-				while (itr.hasNext()) {
-					int cliente = itr.next().getDNI();
-					if (cliente == dni2) {
-						itr.remove();
-					}
-				}
-
-
-			} else {
-				area_resultado.append("Paciente no encontrado");
-			}
-		}
-	}
 
 
 
@@ -114,6 +75,6 @@ class LaminaEliminar extends JPanel {
 	private JTextField dni;
 	private JTextField fechaNacimiento;
 	private JTextArea area_resultado;
-	private ArrayList<paciente> losPacientes;
+
 
 }
