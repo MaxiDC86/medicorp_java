@@ -71,7 +71,7 @@ class LaminaBuscar extends JPanel {
 	private class EnviarDatos implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
+			area_resultado.setText("");
 			for (int i = 0; i < losPacientes.size(); i++) {
 
 				if (nombre.getText().equalsIgnoreCase(losPacientes.get(i).getName())) {
