@@ -14,12 +14,24 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 import javax.swing.*;
 
+import modelo.*;
+
 public class Medicorp {
 	public static void main(String[] args) {
 		miMarco mimarco = new miMarco();
 		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mimarco.setVisible(true);
+		//----BBDD Connection----------
+		try {
+			prueba = new EjecutaBusqueda();
+			System.out.println("Prueba: " +prueba.Busqueda());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
+	private static EjecutaBusqueda prueba;
 }
 
 class miMarco extends JFrame {

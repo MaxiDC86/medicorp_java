@@ -29,3 +29,4 @@ Error: dato ingresado es inválido.  date:Fri Dec 03 14:32:21 ART 2021
 Error:  El DNI ya está dado de alta.  date:Fri Dec 03 14:34:02 ART 2021
 Error: Carga de datos cancelada.  date:Fri Dec 03 14:45:56 ART 2021
 Error: dato ingresado es inválido.  date:Fri Dec 03 14:55:13 ART 2021
+Error: dato ingresado es inválido.  date:Thu Dec 09 11:34:17 ART 2021

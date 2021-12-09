@@ -12,7 +12,7 @@ public class Conexion {
 
 		try {
 			miConexion = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/pacientes" + "?user=pma" + "&password=123456" + "&useSSL=false");
+					"jdbc:mysql://localhost:3306/medicorp" + "?user=pma" + "&password=123456" + "&useSSL=false");
 
 		} catch (Exception e) {
 
