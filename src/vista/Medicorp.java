@@ -1,4 +1,4 @@
-package medicorp_package;
+package vista;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -21,17 +21,9 @@ public class Medicorp {
 		miMarco mimarco = new miMarco();
 		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mimarco.setVisible(true);
-		//----BBDD Connection----------
-		try {
-			prueba = new EjecutaBusqueda();
-			System.out.println("Prueba: " +prueba.Busqueda());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
-	
-	private static EjecutaBusqueda prueba;
+
 }
 
 class miMarco extends JFrame {
@@ -78,20 +70,17 @@ class Lamina extends JPanel {
 		botonListar.addActionListener(new listar_pacientes());
 		botonAlta.addActionListener(new alta_pacientes());
 		botonBuscar.addActionListener(new buscar_pacientes());
-		botonEliminarPaciente.addActionListener(new eliminar_pacientes());
+		//botonEliminarPaciente.addActionListener(new eliminar_pacientes());
 		setBackground(new Color(26, 105, 150));
-		losPacientes = readFromFile();
+
 	}
 
 	private class listar_pacientes implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			losPacientes = readFromFile();
-			if (losPacientes.isEmpty()) {
-				user_comunication.setText("No hay pacientes cargados.");
-			} else {
+
 				miMarcoListar mimarco2 = new miMarcoListar(losPacientes);
 				mimarco2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
+			
 		}
 	}
 
@@ -100,11 +89,11 @@ class Lamina extends JPanel {
 			String regex = "^[a-zA-Z]+$";
 			try {
 				dni = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el DNI del paciente: "));
-				//--------------Validación de fuera de rango para el DNI
+				// --------------Validación de fuera de rango para el DNI
 				if (dni <= 999999 | dni > 99000000) {
 					throw new dni_validation("El DNI ingresado es inválido (fuera de rango)");
 				}
-				//-------------Validación de existencia para el DNI
+				// -------------Validación de existencia para el DNI
 				for (int i = 0; i < losPacientes.size(); i++) {
 					if (dni == losPacientes.get(i).getDNI()) {
 						throw new dni_validation("El DNI ya está dado de alta.");
@@ -130,8 +119,8 @@ class Lamina extends JPanel {
 				System.out.println(fechaNacimiento.getTime());
 				paciente socio = new paciente(dni, apellido, nombre, fechaNacimiento); // Se da de alta un nuevo socio
 				losPacientes.add(paciente.getSocioTotal() - 1, socio);
-				// -------------------------------------------------Saving to file
-				saveToFile(losPacientes);
+
+			
 
 				System.out.println("Se da de alta un paciente");
 				JOptionPane.showMessageDialog(null, "Paciente dado de alta satisfactoriamente.");
@@ -157,61 +146,15 @@ class Lamina extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			losPacientes = readFromFile();
-			if (losPacientes.isEmpty()) {
-				user_comunication.setText("No hay pacientes cargados.");
-			} else {
-				MiMarcoBuscar mimarco3 = new MiMarcoBuscar(losPacientes);
+
+				MiMarcoBuscar mimarco3 = new MiMarcoBuscar();
 				mimarco3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
+			
 		}
 
 	}
-	private class eliminar_pacientes implements ActionListener {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			losPacientes = readFromFile();
-			if (losPacientes.isEmpty()) {
-				user_comunication.setText("No hay pacientes cargados.");
-			} else {
-				MiMarcoEliminar mimarco4 = new MiMarcoEliminar(losPacientes);
-				mimarco4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-			}
-		}
-		
-	}
 
-	@SuppressWarnings("unchecked")
-	public ArrayList<paciente> readFromFile() {
-		try {
-			ObjectInputStream leyendo_fichero;
-			leyendo_fichero = new ObjectInputStream(new FileInputStream("./src/medicorp_package/patients.ser"));
-			losPacientes = (ArrayList<paciente>) leyendo_fichero.readObject();
-			leyendo_fichero.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return losPacientes;
-	}
-
-	public static void saveToFile(ArrayList<paciente> losPacientes) {
-		try {
-			ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(
-					new FileOutputStream("./src/medicorp_package/patients.ser"));
-			escribiendo_fichero.writeObject(losPacientes);
-			escribiendo_fichero.close();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-
-	}
 
 
 }

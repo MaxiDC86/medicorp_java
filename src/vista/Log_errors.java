@@ -1,4 +1,4 @@
-package medicorp_package;
+package vista;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
