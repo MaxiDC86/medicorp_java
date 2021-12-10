@@ -60,103 +60,31 @@ class Lamina extends JPanel {
 	Log_errors error = new Log_errors();
 
 	public Lamina() {
-		add(botonListar);
 		add(botonAlta);
 		add(botonBuscar);
 		add(botonEliminarPaciente);
 		add(botonTurnoAlta);
 		add(botonTurnoBaja);
 		add(user_comunication);
-		botonListar.addActionListener(new listar_pacientes());
 		botonAlta.addActionListener(new alta_pacientes());
 		botonBuscar.addActionListener(new buscar_pacientes());
-		//botonEliminarPaciente.addActionListener(new eliminar_pacientes());
 		setBackground(new Color(26, 105, 150));
-
-	}
-
-	private class listar_pacientes implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-
-				miMarcoListar mimarco2 = new miMarcoListar(losPacientes);
-				mimarco2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			
-		}
 	}
 
 	private class alta_pacientes implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			String regex = "^[a-zA-Z]+$";
-			try {
-				dni = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el DNI del paciente: "));
-				// --------------Validación de fuera de rango para el DNI
-				if (dni <= 999999 | dni > 99000000) {
-					throw new dni_validation("El DNI ingresado es inválido (fuera de rango)");
-				}
-				// -------------Validación de existencia para el DNI
-				for (int i = 0; i < losPacientes.size(); i++) {
-					if (dni == losPacientes.get(i).getDNI()) {
-						throw new dni_validation("El DNI ya está dado de alta.");
-					}
-				}
-				apellido = JOptionPane.showInputDialog("Ingrese el apellido del paciente: ");
-				if (apellido.matches(regex)) {// ...
-				}
-				apellido = apellido.trim();
-				apellido = apellido.substring(0, 1).toUpperCase() + apellido.substring(1);
-				nombre = JOptionPane.showInputDialog("Ingrese el nombre del paciente: ");
-				if (nombre.matches(regex)) {// ...
-				}
-				nombre = nombre.trim();
-				nombre = nombre.substring(0, 1).toUpperCase() + nombre.substring(1);
-				fechaNacimiento.setLenient(false);
-				fechaNacimiento.set(Calendar.YEAR,
-						Integer.parseInt(JOptionPane.showInputDialog("Ingrese el año de nacimiento: ")));
-				fechaNacimiento.set(Calendar.MONTH,
-						Integer.parseInt(JOptionPane.showInputDialog("Ingrese el mes de nacimiento: ")) - 1);
-				fechaNacimiento.set(Calendar.DAY_OF_MONTH,
-						Integer.parseInt(JOptionPane.showInputDialog("Ingrese el dia de nacimiento: ")));
-				System.out.println(fechaNacimiento.getTime());
-				paciente socio = new paciente(dni, apellido, nombre, fechaNacimiento); // Se da de alta un nuevo socio
-				losPacientes.add(paciente.getSocioTotal() - 1, socio);
-
-			
-
-				System.out.println("Se da de alta un paciente");
-				JOptionPane.showMessageDialog(null, "Paciente dado de alta satisfactoriamente.");
-			} catch (dni_validation e1) {
-				user_comunication.setText("Error:  " + e1.getMessage());
-				error.write("Error:  " + e1.getMessage());
-			} catch (IllegalArgumentException e2) {
-				user_comunication.setText("Error: dato ingresado es inválido.");
-				error.write("Error: dato ingresado es inválido.");
-			} catch (NullPointerException e3) {
-				user_comunication.setText("Error: Carga de datos cancelada.");
-				error.write("Error: Carga de datos cancelada.");
-			} catch (ArrayIndexOutOfBoundsException e4) {
-				user_comunication.setText("Error: DNI no válido.");
-				error.write("Error: DNI no válido.");
-			} catch (Throwable e5) {
-				user_comunication.setText("Error inesperado durante la carga de datos.");
-			}
+			MiMarcoAlta mimarco2 = new MiMarcoAlta();
+			mimarco2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 	}
 
 	private class buscar_pacientes implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
-
-				MiMarcoBuscar mimarco3 = new MiMarcoBuscar();
-				mimarco3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			
+			MiMarcoBuscar mimarco3 = new MiMarcoBuscar();
+			mimarco3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
-
 	}
-
-
-
-
 }
 
 class dni_validation extends Exception {

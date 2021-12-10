@@ -31,3 +31,5 @@ Error: Carga de datos cancelada.  date:Fri Dec 03 14:45:56 ART 2021
 Error: dato ingresado es inválido.  date:Fri Dec 03 14:55:13 ART 2021
 Error: dato ingresado es inválido.  date:Thu Dec 09 11:34:17 ART 2021
 Error: dato ingresado es inválido.  date:Thu Dec 09 12:05:21 ART 2021
+Error: dato ingresado es inválido.  date:Thu Dec 09 16:41:32 ART 2021
+Error: dato ingresado es inválido.  date:Thu Dec 09 16:45:17 ART 2021
