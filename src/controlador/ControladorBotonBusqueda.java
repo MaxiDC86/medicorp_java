@@ -16,7 +16,7 @@ public class ControladorBotonBusqueda implements ActionListener {
 	public void actionPerformed(ActionEvent e1) {
 		
 		elmarco.clearResultado(); // limpiamos la pantalla de busquedas anteriores.
-		resultadoConsultas = obj.Busqueda(elmarco.getApellido(),elmarco.getNombre(), elmarco.getDni());
+		resultadoConsultas = obj.Busqueda(elmarco.getApellido(),elmarco.getNombre(), elmarco.getDni(), elmarco.getFechaNacimiento());
 		try {
 			
 			while(resultadoConsultas.next()) {

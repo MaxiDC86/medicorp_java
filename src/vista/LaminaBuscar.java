@@ -69,10 +69,14 @@ public class LaminaBuscar extends JPanel {
 		return dni.getText();
 	}
 
+	public String getFechaNacimiento() {
+		return fechaNacimiento.getText();
+	}
 	private JTextField dni;
 	private JTextField nombre;
 	private JTextField apellido;
 	private JTextField fechaNacimiento;
+
 	private JTextArea area_resultado;
 
 }
