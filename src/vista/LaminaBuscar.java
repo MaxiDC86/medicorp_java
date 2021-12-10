@@ -3,11 +3,13 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.util.ArrayList;
+
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -21,20 +23,27 @@ public class LaminaBuscar extends JPanel {
 		setLayout(new BorderLayout());
 		JPanel lamina_superior = new JPanel();
 		JPanel lamina_centro = new JPanel();
-		lamina_superior.setLayout(new GridLayout(4, 2));
+		lamina_superior.setLayout(new GridLayout(6, 2));
 		area_resultado = new JTextArea(10, 90);
 		area_resultado.setEditable(false);
 		area_resultado.setEnabled(false);
 		area_resultado.setWrapStyleWord(true);
 		area_resultado.setLineWrap(true);
 		area_resultado.setDisabledTextColor(Color.black);
-		lamina_centro.add(area_resultado);
+		area_resultadoScroll = new JScrollPane(area_resultado);
+		area_resultadoScroll.setBounds(10, 100, 300, 400);
+		lamina_centro.add(area_resultadoScroll);
 		add(lamina_superior, BorderLayout.NORTH);
 		add(lamina_centro, BorderLayout.CENTER);
 		apellido = new JTextField(15);
 		nombre = new JTextField(15);
 		dni = new JTextField(15);
 		fechaNacimiento = new JTextField(15);
+		sexo = new JComboBox();
+		sexo.setEditable(false);
+		sexo.addItem("MASCULINE");
+		sexo.addItem("FEMENINE");
+		sexo.addItem("OTRO");
 		lamina_superior.add(new JLabel("   Apellido"));
 		lamina_superior.add(apellido);
 		lamina_superior.add(new JLabel("   Nombre"));
@@ -43,6 +52,8 @@ public class LaminaBuscar extends JPanel {
 		lamina_superior.add(dni);
 		lamina_superior.add(new JLabel("   Fecha de Nacimiento"));
 		lamina_superior.add(fechaNacimiento);
+		lamina_superior.add(new JLabel("   Genero"));
+		lamina_superior.add(sexo);
 
 		JButton enviar = new JButton("CONSULTAR EN BASE DE DATOS");
 		enviar.setBackground(Color.GREEN);
@@ -72,11 +83,17 @@ public class LaminaBuscar extends JPanel {
 	public String getFechaNacimiento() {
 		return fechaNacimiento.getText();
 	}
+
+	public String getSexo() {
+		return sexo.getSelectedItem().toString();
+	}
+
 	private JTextField dni;
 	private JTextField nombre;
 	private JTextField apellido;
 	private JTextField fechaNacimiento;
-
+	private JComboBox sexo;
 	private JTextArea area_resultado;
+	private JScrollPane area_resultadoScroll;
 
 }
