@@ -17,7 +17,7 @@ public class ControladorBotonAlta implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),
-				miLamina.getFechaNacimiento(), miLamina.getSexo(), "SINGLE");
+				miLamina.getFechaNacimiento(), miLamina.getSexo(), miLamina.getEstadocivil());
 
 	}
 

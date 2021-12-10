@@ -26,8 +26,16 @@ public class LaminaAlta extends JPanel {
 		nombre = new JTextField(15);
 		dni = new JTextField(15);
 		fechaNacimiento = new JTextField(15);
-		sexo = new JTextField(15);
-		estadocivil=new JTextField(15);
+		sexo = new JComboBox();
+		sexo.setEditable(false);
+		sexo.addItem("FEMENINE");
+		sexo.addItem("MASCULINE");
+		sexo.addItem("OTHER");
+		estadoCivil = new JComboBox();
+		estadoCivil.setEditable(false);
+		estadoCivil.addItem("MARRIED");
+		estadoCivil.addItem("SINGLE");
+		estadoCivil.addItem("DIVORCED");
 		lamina_superior.add(new JLabel("   Apellido"));
 		lamina_superior.add(apellido);
 		lamina_superior.add(new JLabel("   Nombre"));
@@ -39,7 +47,7 @@ public class LaminaAlta extends JPanel {
 		lamina_superior.add(new JLabel("   Genero"));
 		lamina_superior.add(sexo);
 		lamina_superior.add(new JLabel("   Estado civil"));
-		lamina_superior.add(estadocivil);
+		lamina_superior.add(estadoCivil);
 
 		JButton enviar = new JButton("CARGAR PACIENTE EN BASE DE DATOS");
 		enviar.setBackground(Color.GREEN);
@@ -55,20 +63,26 @@ public class LaminaAlta extends JPanel {
 		return nombre.getText();
 	}
 
+	public String getEstadocivil() {
+		return estadoCivil.getSelectedItem().toString();
+	}
+
 	public int getDni() {
-		return  Integer.parseInt(dni.getText());
+		return Integer.parseInt(dni.getText());
 	}
 
 	public String getFechaNacimiento() {
 		return fechaNacimiento.getText();
 	}
+
 	public String getSexo() {
-		return sexo.getText();
+		return sexo.getSelectedItem().toString();
 	}
+
 	private JTextField dni;
-	private JTextField nombre,sexo, estadocivil;
+	private JTextField nombre;
 	private JTextField apellido;
 	private JTextField fechaNacimiento;
-
+	private JComboBox estadoCivil, sexo;
 
 }
