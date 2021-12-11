@@ -5,8 +5,17 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Properties;
 
 import javax.swing.*;
+import javax.swing.JFormattedTextField.AbstractFormatter;
+
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
 import controlador.ControladorBotonAlta;
 import controlador.ControladorBotonBusqueda;
@@ -19,13 +28,12 @@ public class LaminaAlta extends JPanel {
 		setLayout(new BorderLayout());
 		JPanel lamina_superior = new JPanel();
 		JPanel lamina_centro = new JPanel();
-		lamina_superior.setLayout(new GridLayout(6, 2));
+		lamina_superior.setLayout(new GridLayout(7, 2));
 		add(lamina_superior, BorderLayout.NORTH);
 		add(lamina_centro, BorderLayout.CENTER);
 		apellido = new JTextField(15);
 		nombre = new JTextField(15);
 		dni = new JTextField(15);
-		fechaNacimiento = new JTextField(15);
 		sexo = new JComboBox();
 		sexo.setEditable(false);
 		sexo.addItem("FEMENINE");
@@ -36,6 +44,17 @@ public class LaminaAlta extends JPanel {
 		estadoCivil.addItem("MARRIED");
 		estadoCivil.addItem("SINGLE");
 		estadoCivil.addItem("DIVORCED");
+		//-----------------Fecha de Nacimiento------------------------------
+		model = new UtilDateModel();
+		model.setDate(1990, 8, 24);//Fecha inicial en el calendario.
+		model.setSelected(true);
+		Properties p = new Properties();
+		p.put("text.today", "Today");
+		p.put("text.month", "Month");
+		p.put("text.year", "Year");
+		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
+		JDatePickerImpl fechaNacimiento = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+		//--------------------------------------------------------------
 		lamina_superior.add(new JLabel("   Apellido"));
 		lamina_superior.add(apellido);
 		lamina_superior.add(new JLabel("   Nombre"));
@@ -55,6 +74,28 @@ public class LaminaAlta extends JPanel {
 		add(enviar, BorderLayout.SOUTH);
 	}
 
+	public class DateLabelFormatter extends AbstractFormatter {
+
+		private String datePattern = "yyyy-MM-dd";
+		private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+
+		@Override
+		public Object stringToValue(String text) throws ParseException {
+			return dateFormatter.parseObject(text);
+		}
+
+		@Override
+		public String valueToString(Object value) throws ParseException {
+			if (value != null) {
+				Calendar cal = (Calendar) value;
+				return dateFormatter.format(cal.getTime());
+			}
+
+			return "";
+		}
+
+	}
+
 	public String getApellido() {
 		return apellido.getText();
 	}
@@ -72,7 +113,9 @@ public class LaminaAlta extends JPanel {
 	}
 
 	public String getFechaNacimiento() {
-		return fechaNacimiento.getText();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String yyyyMMdd = sdf.format(model.getValue());
+		return yyyyMMdd;
 	}
 
 	public String getSexo() {
@@ -82,7 +125,8 @@ public class LaminaAlta extends JPanel {
 	private JTextField dni;
 	private JTextField nombre;
 	private JTextField apellido;
-	private JTextField fechaNacimiento;
+	private JDatePickerImpl fechaNacimiento;
+	private UtilDateModel model;
 	private JComboBox estadoCivil, sexo;
 
 }
