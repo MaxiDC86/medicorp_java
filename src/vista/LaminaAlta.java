@@ -3,23 +3,16 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Properties;
-
 import javax.swing.*;
 import javax.swing.JFormattedTextField.AbstractFormatter;
-
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
-
 import controlador.ControladorBotonAlta;
-import controlador.ControladorBotonBusqueda;
-import modelo.EjecutaNuevoPaciente;
 
 public class LaminaAlta extends JPanel {
 
@@ -34,19 +27,21 @@ public class LaminaAlta extends JPanel {
 		apellido = new JTextField(15);
 		nombre = new JTextField(15);
 		dni = new JTextField(15);
+		// ----------------Genero----------------------------------------------
 		sexo = new JComboBox();
 		sexo.setEditable(false);
 		sexo.addItem("FEMENINE");
 		sexo.addItem("MASCULINE");
 		sexo.addItem("OTHER");
+		// -----------------Estado civil--------------------------------------
 		estadoCivil = new JComboBox();
 		estadoCivil.setEditable(false);
 		estadoCivil.addItem("MARRIED");
 		estadoCivil.addItem("SINGLE");
 		estadoCivil.addItem("DIVORCED");
-		//-----------------Fecha de Nacimiento------------------------------
+		// -----------------Fecha de Nacimiento------------------------------
 		model = new UtilDateModel();
-		model.setDate(1990, 8, 24);//Fecha inicial en el calendario.
+		model.setDate(1990, 8, 24);// Fecha inicial en el calendario.
 		model.setSelected(true);
 		Properties p = new Properties();
 		p.put("text.today", "Today");
@@ -54,7 +49,7 @@ public class LaminaAlta extends JPanel {
 		p.put("text.year", "Year");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		JDatePickerImpl fechaNacimiento = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-		//--------------------------------------------------------------
+		// --------------------Se agregan a la lamina-------------------------
 		lamina_superior.add(new JLabel("   Apellido"));
 		lamina_superior.add(apellido);
 		lamina_superior.add(new JLabel("   Nombre"));
@@ -67,7 +62,7 @@ public class LaminaAlta extends JPanel {
 		lamina_superior.add(sexo);
 		lamina_superior.add(new JLabel("   Estado civil"));
 		lamina_superior.add(estadoCivil);
-
+		// ----------Boton para enviar consulta de busqueda a la base de datos----
 		JButton enviar = new JButton("CARGAR PACIENTE EN BASE DE DATOS");
 		enviar.setBackground(Color.GREEN);
 		enviar.addActionListener(new ControladorBotonAlta(this));
@@ -114,8 +109,7 @@ public class LaminaAlta extends JPanel {
 
 	public String getFechaNacimiento() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String yyyyMMdd = sdf.format(model.getValue());
-		return yyyyMMdd;
+		return sdf.format(model.getValue());
 	}
 
 	public String getSexo() {

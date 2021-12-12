@@ -53,7 +53,6 @@ class Lamina extends JPanel {
 	JButton botonListar = new JButton("Listar Pacientes");
 	JButton botonAlta = new JButton("Alta de Pacientes");
 	JButton botonBuscar = new JButton("Buscar Pacientes");
-	JButton botonEliminarPaciente = new JButton("Eliminar Paciente");
 	JButton botonTurnoAlta = new JButton("Alta de Turno");
 	JButton botonTurnoBaja = new JButton("Baja de Turno");
 	private JLabel user_comunication = new JLabel();
@@ -62,7 +61,6 @@ class Lamina extends JPanel {
 	public Lamina() {
 		add(botonAlta);
 		add(botonBuscar);
-		add(botonEliminarPaciente);
 		add(botonTurnoAlta);
 		add(botonTurnoBaja);
 		add(user_comunication);
