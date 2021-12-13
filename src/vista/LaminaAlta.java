@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +24,6 @@ public class LaminaAlta extends JPanel {
 		JPanel lamina_centro = new JPanel();
 		lamina_superior.setLayout(new GridLayout(7, 2));
 		add(lamina_superior, BorderLayout.NORTH);
-		add(lamina_centro, BorderLayout.CENTER);
 		apellido = new JTextField(15);
 		nombre = new JTextField(15);
 		dni = new JTextField(15);
@@ -62,6 +62,11 @@ public class LaminaAlta extends JPanel {
 		lamina_superior.add(sexo);
 		lamina_superior.add(new JLabel("   Estado civil"));
 		lamina_superior.add(estadoCivil);
+		// ------------Mensaje de estado de carga de datos ---------------
+		datosCargados = new JLabel("");
+		Font letra = new Font("Seif",Font.PLAIN,24);
+		datosCargados.setFont(letra);;
+		lamina_superior.add(datosCargados);
 		// ----------Boton para enviar consulta de busqueda a la base de datos----
 		JButton enviar = new JButton("CARGAR PACIENTE EN BASE DE DATOS");
 		enviar.setBackground(Color.GREEN);
@@ -115,6 +120,15 @@ public class LaminaAlta extends JPanel {
 	public String getSexo() {
 		return sexo.getSelectedItem().toString();
 	}
+	public void clearInlet() {
+		apellido.setText("");
+		nombre.setText("");
+		dni.setText("");
+	}
+
+	public void setDatosCargados(String estadoDatos) {
+		this.datosCargados.setText(estadoDatos);
+	}
 
 	private JTextField dni;
 	private JTextField nombre;
@@ -122,5 +136,6 @@ public class LaminaAlta extends JPanel {
 	private JDatePickerImpl fechaNacimiento;
 	private UtilDateModel model;
 	private JComboBox estadoCivil, sexo;
+	private JLabel datosCargados;
 
 }

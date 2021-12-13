@@ -44,11 +44,6 @@ class miMarco extends JFrame {
 
 class Lamina extends JPanel {
 
-	private static ArrayList<paciente> losPacientes = new ArrayList<paciente>();
-	private int dni;
-	private String apellido;
-	private String nombre;
-	private GregorianCalendar fechaNacimiento = new GregorianCalendar();
 	private static final long serialVersionUID = 1L;
 	JButton botonListar = new JButton("Listar Pacientes");
 	JButton botonAlta = new JButton("Alta de Pacientes");
