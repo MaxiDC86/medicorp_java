@@ -14,6 +14,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 import controlador.ControladorBotonAlta;
+import controlador.ControladorCargaCoberturaMedica;
 
 public class LaminaAlta extends JPanel {
 
@@ -22,7 +23,7 @@ public class LaminaAlta extends JPanel {
 		setLayout(new BorderLayout());
 		JPanel lamina_superior = new JPanel();
 		JPanel lamina_centro = new JPanel();
-		lamina_superior.setLayout(new GridLayout(7, 2));
+		lamina_superior.setLayout(new GridLayout(8, 2));
 		add(lamina_superior, BorderLayout.NORTH);
 		apellido = new JTextField(15);
 		nombre = new JTextField(15);
@@ -39,6 +40,10 @@ public class LaminaAlta extends JPanel {
 		estadoCivil.addItem("MARRIED");
 		estadoCivil.addItem("SINGLE");
 		estadoCivil.addItem("DIVORCED");
+		// -----------------Cobertura Medica--------------------------------------
+		coberturaMedica = new JComboBox();
+		coberturaMedica.setEditable(false);
+		coberturaMedica.addItem("NINGUNA");
 		// -----------------Fecha de Nacimiento------------------------------
 		model = new UtilDateModel();
 		model.setDate(1990, 8, 24);// Fecha inicial en el calendario.
@@ -62,6 +67,8 @@ public class LaminaAlta extends JPanel {
 		lamina_superior.add(sexo);
 		lamina_superior.add(new JLabel("   Estado civil"));
 		lamina_superior.add(estadoCivil);
+		lamina_superior.add(new JLabel("   Cobertura Medica"));
+		lamina_superior.add(coberturaMedica);
 		// ------------Mensaje de estado de carga de datos ---------------
 		datosCargados = new JLabel("");
 		Font letra = new Font("Seif",Font.PLAIN,20);
@@ -72,7 +79,9 @@ public class LaminaAlta extends JPanel {
 		enviar.setBackground(Color.GREEN);
 		enviar.addActionListener(new ControladorBotonAlta(this));
 		add(enviar, BorderLayout.SOUTH);
+		
 	}
+
 
 	public class DateLabelFormatter extends AbstractFormatter {
 
@@ -115,6 +124,10 @@ public class LaminaAlta extends JPanel {
 		return dni.getText();
 	}
 
+	public void setCoberturaMedica(String cobertura) {
+		this.coberturaMedica.addItem(cobertura);
+	}
+
 	public String getFechaNacimiento() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		return sdf.format(model.getValue());
@@ -122,6 +135,9 @@ public class LaminaAlta extends JPanel {
 
 	public String getSexo() {
 		return sexo.getSelectedItem().toString();
+	}
+	public String getCoberturaMedica() {
+		return coberturaMedica.getSelectedItem().toString();
 	}
 	public void clearInlet() {
 		apellido.setText("");
@@ -138,7 +154,7 @@ public class LaminaAlta extends JPanel {
 	private JTextField apellido;
 	private JDatePickerImpl fechaNacimiento;
 	private UtilDateModel model;
-	private JComboBox estadoCivil, sexo;
+	private JComboBox estadoCivil, sexo, coberturaMedica;
 	private JLabel datosCargados;
 
 }

@@ -14,7 +14,7 @@ public class EjecutaNuevoPaciente {
 	}
 
 	public String NuevoPaciente(int dni, String apellido, String nombre, 
-			String birthday,String sexo, String maritalStatus) {
+			String birthday,String sexo, String maritalStatus, String coberturaMedica) {
 		Connection accesoBBDD = miConexion.dameConexion();
 		try {
 			enviaNuevoPaciente = accesoBBDD.prepareStatement(enviaDatosPaciente);
@@ -26,11 +26,13 @@ public class EjecutaNuevoPaciente {
 			enviaNuevoPaciente.setString(6, maritalStatus);
 			enviaNuevoPaciente.setInt(7, 9);
 			enviaNuevoPaciente.setString(8, timeNow.toString());			
+			enviaNuevoPaciente.setString(9, coberturaMedica);			
 			enviaNuevoPaciente.executeUpdate();
 			System.out.println("datos enviados!");
 			return "OK";
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println(e.getMessage());
 			return "Error!";
 		}
 
@@ -39,6 +41,6 @@ public class EjecutaNuevoPaciente {
 	public Conexion miConexion;
 	private PreparedStatement enviaNuevoPaciente;
 	private final String enviaDatosPaciente = "INSERT INTO pacientes ( DNI, LASTNAME, NAME,"
-			+ " GENDER, BIRTHDAY,MARITALSTATUS,ID,CREATED) VALUES (?,?,?,?,?,?,?,?)";
+			+ " GENDER, BIRTHDAY,MARITALSTATUS,ID,CREATED,PRESTADOR) VALUES (?,?,?,?,?,?,?,?,?)";
 	private LocalDate timeNow = LocalDate.now();
 }

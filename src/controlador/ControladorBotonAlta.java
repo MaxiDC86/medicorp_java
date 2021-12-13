@@ -21,7 +21,7 @@ public class ControladorBotonAlta implements ActionListener {
 		}else {
 			
 			if(obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),
-					miLamina.getFechaNacimiento(), miLamina.getSexo(), miLamina.getEstadocivil()).equals("OK")) {
+					miLamina.getFechaNacimiento(), miLamina.getSexo(), miLamina.getEstadocivil(),miLamina.getCoberturaMedica()).equals("OK")) {
 				
 				miLamina.setDatosCargados("---->Los datos han sido cargados exitosamente!");
 				miLamina.clearInlet();

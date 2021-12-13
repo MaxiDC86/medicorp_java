@@ -5,6 +5,8 @@ import java.awt.Toolkit;
 
 import javax.swing.*;
 
+import controlador.ControladorCargaCoberturaMedica;
+
 public class MiMarcoAlta extends JFrame {
 	private static final long serialVersionUID = 1L;
 
@@ -19,6 +21,7 @@ public class MiMarcoAlta extends JFrame {
 		setVisible(true);
 		LaminaAlta lamina2 = new LaminaAlta();
 		add(lamina2);
+		addWindowListener(new ControladorCargaCoberturaMedica(lamina2));
 	}
 
 }
