@@ -27,6 +27,7 @@ public class EjecutaNuevoPaciente {
 			enviaNuevoPaciente.setInt(7, 9);
 			enviaNuevoPaciente.setString(8, timeNow.toString());			
 			enviaNuevoPaciente.executeUpdate();
+			System.out.println("datos enviados!");
 			return "OK";
 		} catch (SQLException e) {
 			e.printStackTrace();

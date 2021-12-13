@@ -64,7 +64,7 @@ public class LaminaAlta extends JPanel {
 		lamina_superior.add(estadoCivil);
 		// ------------Mensaje de estado de carga de datos ---------------
 		datosCargados = new JLabel("");
-		Font letra = new Font("Seif",Font.PLAIN,24);
+		Font letra = new Font("Seif",Font.PLAIN,20);
 		datosCargados.setFont(letra);;
 		lamina_superior.add(datosCargados);
 		// ----------Boton para enviar consulta de busqueda a la base de datos----
@@ -110,6 +110,9 @@ public class LaminaAlta extends JPanel {
 
 	public int getDni() {
 		return Integer.parseInt(dni.getText());
+	}
+	public String getDniString() {
+		return dni.getText();
 	}
 
 	public String getFechaNacimiento() {

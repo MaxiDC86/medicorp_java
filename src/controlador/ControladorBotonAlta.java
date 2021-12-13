@@ -15,15 +15,19 @@ public class ControladorBotonAlta implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		if(obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),
-				miLamina.getFechaNacimiento(), miLamina.getSexo(), miLamina.getEstadocivil()).equals("OK")) {
-			
-			miLamina.setDatosCargados("-------------------->Los datos han sido cargados exitosamente!<-----------------------------");
-			miLamina.clearInlet();
+		
+		if(miLamina.getDniString().equals("")|| miLamina.getApellido().equals("") || miLamina.getNombre().equals("") ) {
+			miLamina.setDatosCargados("---->Completar todos los campos!");
 		}else {
 			
-			miLamina.setDatosCargados("Se ha producido un error!");
+			if(obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),
+					miLamina.getFechaNacimiento(), miLamina.getSexo(), miLamina.getEstadocivil()).equals("OK")) {
+				
+				miLamina.setDatosCargados("---->Los datos han sido cargados exitosamente!");
+				miLamina.clearInlet();
+			}else {
+				miLamina.setDatosCargados("---->Se ha producido un error!");
+			}
 		}
 
 	}
