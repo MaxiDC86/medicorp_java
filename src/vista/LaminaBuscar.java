@@ -24,7 +24,7 @@ public class LaminaBuscar extends JPanel {
 		JPanel lamina_superior = new JPanel();
 		JPanel lamina_centro = new JPanel();
 		lamina_superior.setLayout(new GridLayout(6, 2));
-		area_resultado = new JTextArea(10, 90);
+		area_resultado = new JTextArea(10, 115);
 		area_resultado.setEditable(false);
 		area_resultado.setEnabled(false);
 		area_resultado.setWrapStyleWord(true);

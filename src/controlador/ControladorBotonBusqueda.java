@@ -32,6 +32,10 @@ public class ControladorBotonBusqueda implements ActionListener {
 				elmarco.setArea_resultado(resultadoConsultas.getString("BIRTHDAY"));
 				elmarco.setArea_resultado(" , Estado civil: ");
 				elmarco.setArea_resultado(resultadoConsultas.getString("MARITALSTATUS"));
+				elmarco.setArea_resultado(" , Email: ");
+				elmarco.setArea_resultado(resultadoConsultas.getString("EMAIL"));
+				elmarco.setArea_resultado(" , Cobertura medica: ");
+				elmarco.setArea_resultado(resultadoConsultas.getString("PRESTADOR"));
 				elmarco.setArea_resultado("\n");
 			}
 		}catch(Exception e2) {

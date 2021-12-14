@@ -35,7 +35,7 @@ public class EjecutaBusqueda {
 	public ResultSet rs;
 	private PreparedStatement enviaConsultaTodos;
 	private final String consultaTodos = "SELECT DNI, LASTNAME, NAME, GENDER, BIRTHDAY,"
-			+ " MARITALSTATUS  FROM pacientes WHERE (LASTNAME=? OR NAME=? OR DNI=? OR BIRTHDAY=?) AND GENDER=?";
+			+ " MARITALSTATUS,EMAIL,PRESTADOR  FROM pacientes WHERE (LASTNAME=? OR NAME=? OR DNI=? OR BIRTHDAY=?) AND GENDER=?";
 	private String fechaNacimiento;
 
 }

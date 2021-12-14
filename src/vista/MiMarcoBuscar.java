@@ -11,7 +11,7 @@ public class MiMarcoBuscar extends JFrame {
 
 	public MiMarcoBuscar() {
 
-		setBounds(100, 200, 1000, 400);
+		setBounds(100, 200, 1200, 400);
 		setTitle("MEDICORP SOLUTIONS - BUSCAR PACIENTES");
 		Toolkit mipantalla = Toolkit.getDefaultToolkit();
 		Image miIcono = mipantalla.getImage("src/images/crocodile.png");
