@@ -13,7 +13,7 @@ public class EjecutaNuevoPaciente {
 		miConexion = new Conexion();
 	}
 
-	public String NuevoPaciente(int dni, String apellido, String nombre, 
+	public String NuevoPaciente(int dni, String apellido, String nombre, String email,
 			String birthday,String sexo, String maritalStatus, String coberturaMedica) {
 		Connection accesoBBDD = miConexion.dameConexion();
 		try {
@@ -27,6 +27,7 @@ public class EjecutaNuevoPaciente {
 			enviaNuevoPaciente.setInt(7, 9);
 			enviaNuevoPaciente.setString(8, timeNow.toString());			
 			enviaNuevoPaciente.setString(9, coberturaMedica);			
+			enviaNuevoPaciente.setString(10, email);			
 			enviaNuevoPaciente.executeUpdate();
 			System.out.println("datos enviados!");
 			return "OK";
@@ -41,6 +42,6 @@ public class EjecutaNuevoPaciente {
 	public Conexion miConexion;
 	private PreparedStatement enviaNuevoPaciente;
 	private final String enviaDatosPaciente = "INSERT INTO pacientes ( DNI, LASTNAME, NAME,"
-			+ " GENDER, BIRTHDAY,MARITALSTATUS,ID,CREATED,PRESTADOR) VALUES (?,?,?,?,?,?,?,?,?)";
+			+ " GENDER, BIRTHDAY,MARITALSTATUS,ID,CREATED,PRESTADOR,EMAIL) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private LocalDate timeNow = LocalDate.now();
 }

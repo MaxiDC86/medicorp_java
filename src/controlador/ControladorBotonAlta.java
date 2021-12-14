@@ -20,7 +20,7 @@ public class ControladorBotonAlta implements ActionListener {
 			miLamina.setDatosCargados("Completar todos los campos!");
 		}else {
 			
-			if(obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),
+			if(obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),miLamina.getEmail(),
 					miLamina.getFechaNacimiento(), miLamina.getSexo(), miLamina.getEstadocivil(),miLamina.getCoberturaMedica()).equals("OK")) {
 				
 				miLamina.setDatosCargados("---->Los datos han sido cargados exitosamente!");

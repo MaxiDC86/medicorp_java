@@ -24,7 +24,9 @@ public class LaminaAlta extends JPanel {
 		setLayout(new BorderLayout());
 		JPanel lamina_superior = new JPanel();
 		JPanel lamina_centro = new JPanel();
-		lamina_superior.setLayout(new GridLayout(9, 4));
+		lamina_superior.setLayout(new GridLayout(9, 3));
+		//lamina_centro.setLayout(new GridLayout(3, 2));
+		add(lamina_centro, BorderLayout.CENTER);
 		add(lamina_superior, BorderLayout.NORTH);
 		//-------APELLIDO--------------------------------
 		apellido = new JTextField(15);
@@ -81,37 +83,35 @@ public class LaminaAlta extends JPanel {
 		p.put("text.year", "Year");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		JDatePickerImpl fechaNacimiento = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-		fechaNacimiento.addFocusListener(controlFoco);
-		fechaIncorrecto = new JLabel("");
-		fechaIncorrecto.setFont(letra2);;
-		fechaIncorrecto.setForeground(Color.RED);
 		// --------------------Se agregan a la lamina los campos-------------------------
-		lamina_superior.add(new JLabel("   Apellido"));
+		lamina_superior.add(new JLabel("           Apellido"));
 		lamina_superior.add(apellido);
 		lamina_superior.add(apellidoIncorrecto);
-		lamina_superior.add(new JLabel("   Nombre"));
+		lamina_superior.add(new JLabel("           Nombre"));
 		lamina_superior.add(nombre);
 		lamina_superior.add(nombreIncorrecto);
-		lamina_superior.add(new JLabel("   DNI"));
+		lamina_superior.add(new JLabel("           DNI"));
 		lamina_superior.add(dni);
 		lamina_superior.add(dniIncorrecto);
-		lamina_superior.add(new JLabel("   EMAIL"));
+		lamina_superior.add(new JLabel("           EMAIL"));
 		lamina_superior.add(email);
 		lamina_superior.add(emailIncorrecto);
-		lamina_superior.add(new JLabel("   Fecha de Nacimiento"));
+		lamina_superior.add(new JLabel("         Fecha de Nacimiento"));
 		lamina_superior.add(fechaNacimiento);
-		lamina_superior.add(fechaIncorrecto);
-		lamina_superior.add(new JLabel("   Genero"));
+		lamina_superior.add(new JLabel("         "));
+		lamina_superior.add(new JLabel("           Genero"));
 		lamina_superior.add(sexo);
-		lamina_superior.add(new JLabel("   Estado civil"));
+		lamina_superior.add(new JLabel("         "));
+		lamina_superior.add(new JLabel("           Estado civil"));
 		lamina_superior.add(estadoCivil);
-		lamina_superior.add(new JLabel("   Cobertura Medica"));
+		lamina_superior.add(new JLabel("         "));
+		lamina_superior.add(new JLabel("           Cobertura Medica"));
 		lamina_superior.add(coberturaMedica);
 		// ------------Mensaje de estado de carga de datos en la BBDD ---------------
 		datosCargados = new JLabel("");
 		Font letra = new Font("Seif",Font.PLAIN,20);
 		datosCargados.setFont(letra);;
-		lamina_superior.add(datosCargados);
+		lamina_centro.add(datosCargados);
 		// ----------Boton para enviar consulta de busqueda a la base de datos----
 		JButton enviar = new JButton("CARGAR PACIENTE EN BASE DE DATOS");
 		enviar.setBackground(Color.GREEN);
@@ -181,6 +181,7 @@ public class LaminaAlta extends JPanel {
 		apellido.setText("");
 		nombre.setText("");
 		dni.setText("");
+		email.setText("");
 	}
 
 	public void setDatosCargados(String estadoDatos) {
@@ -216,7 +217,6 @@ public class LaminaAlta extends JPanel {
 	private JLabel nombreIncorrecto;
 	private JLabel apellidoIncorrecto;
 	private JLabel dniIncorrecto;
-	private JLabel fechaIncorrecto;
 	private ControladorCamposAlta controlFoco;
 	private Font letra2 = new Font("Seif",Font.PLAIN,14);
 	
