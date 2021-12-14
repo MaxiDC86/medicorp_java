@@ -17,7 +17,7 @@ public class ControladorBotonAlta implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		if(miLamina.getDniString().equals("")|| miLamina.getApellido().equals("") || miLamina.getNombre().equals("") ) {
-			miLamina.setDatosCargados("---->Completar todos los campos!");
+			miLamina.setDatosCargados("Completar todos los campos!");
 		}else {
 			
 			if(obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),

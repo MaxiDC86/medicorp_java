@@ -10,7 +10,7 @@ public class EjecutaBusqueda {
 	public ResultSet Busqueda(String apellido, String nombre, String dni, String fechaNacimiento, String sexo) {
 		Connection accesoBBDD = miConexion.dameConexion();
 		if(fechaNacimiento.equals("")) {
-			this.fechaNacimiento ="0000-00-00";
+			this.fechaNacimiento ="1999-01-01";
 		}else {
 			this.fechaNacimiento =fechaNacimiento;
 		}
