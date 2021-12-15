@@ -7,14 +7,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
+import vista.LaminaAlta;
 
 public class EjecutaNuevoPaciente {
 	public EjecutaNuevoPaciente() {
 		miConexion = new Conexion();
+
 	}
 
-	public String NuevoPaciente(String dni, String apellido, String nombre, String email,
-			String birthday,String sexo, String maritalStatus, String coberturaMedica) {
+	public String NuevoPaciente(String dni, String apellido, String nombre, String email, String birthday, String sexo,
+			String maritalStatus, String coberturaMedica) {
 		Connection accesoBBDD = miConexion.dameConexion();
 		try {
 			enviaNuevoPaciente = accesoBBDD.prepareStatement(enviaDatosPaciente);
@@ -25,10 +27,11 @@ public class EjecutaNuevoPaciente {
 			enviaNuevoPaciente.setString(5, birthday);
 			enviaNuevoPaciente.setString(6, maritalStatus);
 			enviaNuevoPaciente.setInt(7, 9);
-			enviaNuevoPaciente.setString(8, timeNow.toString());			
-			enviaNuevoPaciente.setString(9, coberturaMedica);			
-			enviaNuevoPaciente.setString(10, email);			
+			enviaNuevoPaciente.setString(8, timeNow.toString());
+			enviaNuevoPaciente.setString(9, coberturaMedica);
+			enviaNuevoPaciente.setString(10, email);
 			enviaNuevoPaciente.executeUpdate();
+
 			System.out.println("datos enviados!");
 			return "OK";
 		} catch (SQLException e) {
@@ -44,4 +47,5 @@ public class EjecutaNuevoPaciente {
 	private final String enviaDatosPaciente = "INSERT INTO pacientes ( DNI, LASTNAME, NAME,"
 			+ " GENDER, BIRTHDAY,MARITALSTATUS,ID,CREATED,PRESTADOR,EMAIL) VALUES (?,?,?,?,?,?,?,?,?,?)";
 	private LocalDate timeNow = LocalDate.now();
+
 }

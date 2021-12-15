@@ -13,7 +13,7 @@ public class MiMarcoAlta extends JFrame {
 
 	public MiMarcoAlta(ArrayList<String> dniLista) {
 
-		setBounds(100, 200, 550, 400);
+		setBounds(100, 200, 600, 400);
 		setTitle("MEDICORP SOLUTIONS - ALTA DE PACIENTES");
 		Toolkit mipantalla = Toolkit.getDefaultToolkit();
 		Image miIcono = mipantalla.getImage("src/images/crocodile.png");

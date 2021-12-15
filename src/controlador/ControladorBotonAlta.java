@@ -2,6 +2,7 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import modelo.EjecutaNuevoPaciente;
 import vista.LaminaAlta;
@@ -16,17 +17,18 @@ public class ControladorBotonAlta implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(miLamina.getDniString().equals("")|| miLamina.getApellido().equals("") || miLamina.getNombre().equals("") ) {
-			miLamina.setDatosCargados("Completar todos los campos!");
+		if(miLamina.ready==false ) {
+			miLamina.setDatosCargados("Completar todos los campos correctamente!");
 		}else {
 			
 			if(obj.NuevoPaciente(miLamina.getDni(), miLamina.getApellido(), miLamina.getNombre(),miLamina.getEmail(),
 					miLamina.getFechaNacimiento(), miLamina.getSexo(), miLamina.getEstadocivil(),miLamina.getCoberturaMedica()).equals("OK")) {
 				
-				miLamina.setDatosCargados("---->Los datos han sido cargados exitosamente!");
+				miLamina.setDatosCargados("Los datos han sido cargados exitosamente!");
+				miLamina.setDniLista(miLamina.getDni());
 				miLamina.clearInlet();
 			}else {
-				miLamina.setDatosCargados("---->Se ha producido un error!");
+				miLamina.setDatosCargados("Se ha producido un error!");
 			}
 		}
 

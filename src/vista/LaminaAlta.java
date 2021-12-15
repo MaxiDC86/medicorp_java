@@ -27,37 +27,39 @@ public class LaminaAlta extends JPanel {
 		JPanel lamina_superior = new JPanel();
 		JPanel lamina_centro = new JPanel();
 		lamina_superior.setLayout(new GridLayout(9, 3));
-		//lamina_centro.setLayout(new GridLayout(3, 2));
+		// lamina_centro.setLayout(new GridLayout(3, 2));
 		add(lamina_centro, BorderLayout.CENTER);
 		add(lamina_superior, BorderLayout.NORTH);
-		//-------APELLIDO--------------------------------
+		// -------APELLIDO--------------------------------
 		apellido = new JTextField(15);
-		controlFoco = new ControladorCamposAlta(apellido,3,this);
+		controlFoco = new ControladorCamposAlta(apellido, 3, this);
 		apellido.addFocusListener(controlFoco);
 		apellidoIncorrecto = new JLabel("");
 		apellidoIncorrecto.setFont(letra2);
 		apellidoIncorrecto.setForeground(Color.RED);
-		//-------NOMBRE--------------------------
+		// -------NOMBRE--------------------------
 		nombre = new JTextField(15);
-		controlFoco = new ControladorCamposAlta(nombre,2,this);
+		controlFoco = new ControladorCamposAlta(nombre, 2, this);
 		nombre.addFocusListener(controlFoco);
 		nombreIncorrecto = new JLabel("");
 		nombreIncorrecto.setFont(letra2);
 		nombreIncorrecto.setForeground(Color.RED);
-		//-------DNI----------------------------------
+		// -------DNI----------------------------------
 		dni = new JTextField(8);
-		controlFoco = new ControladorCamposAlta(dni,4,this);
+		controlFoco = new ControladorCamposAlta(dni, 4, this);
 		dni.addFocusListener(controlFoco);
 		dniIncorrecto = new JLabel("");
-		dniIncorrecto.setFont(letra2);;
+		dniIncorrecto.setFont(letra2);
+		;
 		dniIncorrecto.setForeground(Color.RED);
-		//---------------------EMAIL----------------------------------
-		email= new JTextField(40);
+		// ---------------------EMAIL----------------------------------
+		email = new JTextField(40);
 		email.setText("ejemplo@ejemplo.com.ar");
-		controlFoco = new ControladorCamposAlta(email,1,this);
+		controlFoco = new ControladorCamposAlta(email, 1, this);
 		email.addFocusListener(controlFoco);
 		emailIncorrecto = new JLabel("");
-		emailIncorrecto.setFont(letra2);;
+		emailIncorrecto.setFont(letra2);
+		;
 		emailIncorrecto.setForeground(Color.RED);
 		// ------GENERO----------------------------------
 		sexo = new JComboBox();
@@ -85,7 +87,8 @@ public class LaminaAlta extends JPanel {
 		p.put("text.year", "Year");
 		JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
 		JDatePickerImpl fechaNacimiento = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-		// --------------------Se agregan a la lamina los campos-------------------------
+		// --------------------Se agregan a la lamina los
+		// campos-------------------------
 		lamina_superior.add(new JLabel("           Apellido"));
 		lamina_superior.add(apellido);
 		lamina_superior.add(apellidoIncorrecto);
@@ -111,17 +114,17 @@ public class LaminaAlta extends JPanel {
 		lamina_superior.add(coberturaMedica);
 		// ------------Mensaje de estado de carga de datos en la BBDD ---------------
 		datosCargados = new JLabel("");
-		Font letra = new Font("Seif",Font.PLAIN,20);
-		datosCargados.setFont(letra);;
+		Font letra = new Font("Seif", Font.PLAIN, 20);
+		datosCargados.setFont(letra);
+		;
 		lamina_centro.add(datosCargados);
 		// ----------Boton para enviar consulta de busqueda a la base de datos----
-		JButton enviar = new JButton("CARGAR PACIENTE EN BASE DE DATOS");
-		enviar.setBackground(Color.GREEN);
+		enviar = new JButton("CARGAR PACIENTE EN BASE DE DATOS");
+		enviar.setBackground(Color.GRAY);
 		enviar.addActionListener(new ControladorBotonAlta(this));
 		add(enviar, BorderLayout.SOUTH);
-		
-	}
 
+	}
 
 	public class DateLabelFormatter extends AbstractFormatter {
 
@@ -160,6 +163,7 @@ public class LaminaAlta extends JPanel {
 	public String getDni() {
 		return dni.getText();
 	}
+
 	public String getDniString() {
 		return dni.getText();
 	}
@@ -176,9 +180,12 @@ public class LaminaAlta extends JPanel {
 	public String getSexo() {
 		return sexo.getSelectedItem().toString();
 	}
+
 	public String getCoberturaMedica() {
 		return coberturaMedica.getSelectedItem().toString();
 	}
+
+	// ---Se limpian los campos cuando se presiona el boton enviar.
 	public void clearInlet() {
 		apellido.setText("");
 		nombre.setText("");
@@ -194,27 +201,48 @@ public class LaminaAlta extends JPanel {
 		return email.getText();
 	}
 
+	// ----Mensajes de campos incorrectos-----
 	public void setEmailIncorrecto(String error) {
 		this.emailIncorrecto.setText(error);
 	}
+
 	public void setApellidoIncorrecto(String error) {
 		this.apellidoIncorrecto.setText(error);
 	}
+
 	public void setNombreIncorrecto(String error) {
 		this.nombreIncorrecto.setText(error);
 	}
+
 	public void setDniIncorrecto(String error) {
 		this.dniIncorrecto.setText(error);
 	}
-	
+
+	// ---Comprobación de si el DNI ingresado ya existe en la BBDD.
 	public boolean dniYaCargado(String dniInput) {
 
 		for (String element : dniLista) {
-			if (element.contains(dniInput)) {
+			if (element.equals(dniInput)) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	// ---Se agrega el DNI cargado a la memoria temporal.---------
+	public void setDniLista(String dniString) {
+		this.dniLista.add(dniString);
+	}
+
+	public void allCamposOK(boolean camposOK) {
+		if (camposOK) {
+			enviar.setBackground(Color.GREEN);
+			ready = true;
+		} else {
+			enviar.setBackground(Color.GRAY);
+			ready = false;
+		}
+
 	}
 
 	private JTextField dni;
@@ -230,7 +258,9 @@ public class LaminaAlta extends JPanel {
 	private JLabel apellidoIncorrecto;
 	private JLabel dniIncorrecto;
 	private ControladorCamposAlta controlFoco;
-	private Font letra2 = new Font("Seif",Font.PLAIN,14);
-	private ArrayList<String> dniLista;
+	private JButton enviar;
+	private Font letra2 = new Font("Seif", Font.PLAIN, 14);
+	private static ArrayList<String> dniLista;
+	public static boolean ready = false;
 
 }
