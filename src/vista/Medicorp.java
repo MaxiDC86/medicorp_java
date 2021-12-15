@@ -14,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 import javax.swing.*;
 
+import controlador.ControladorCargaCoberturaMedica;
+import controlador.ControladorCargaDNIs;
 import modelo.*;
 
 public class Medicorp {
@@ -34,12 +36,17 @@ class miMarco extends JFrame {
 		setBounds(300, 100, 800, 100);
 		setTitle("Bienvenidos a MEDICORP SOLUTIONS");
 		setResizable(false);
-		Lamina milamina = new Lamina();
+		Lamina milamina = new Lamina(dniLista);
 		add(milamina);
 		Toolkit mipantalla = Toolkit.getDefaultToolkit();
 		Image miIcono = mipantalla.getImage("src/images/crocodile.png");
 		setIconImage(miIcono);
+		addWindowListener(new ControladorCargaDNIs(dniLista));
 	}
+
+
+
+	private ArrayList<String> dniLista = new ArrayList<String>();
 }
 
 class Lamina extends JPanel {
@@ -53,7 +60,8 @@ class Lamina extends JPanel {
 	private JLabel user_comunication = new JLabel();
 	Log_errors error = new Log_errors();
 
-	public Lamina() {
+	public Lamina(ArrayList<String> dniLista) {
+		this.dniLista = dniLista;
 		add(botonAlta);
 		add(botonBuscar);
 		add(botonTurnoAlta);
@@ -61,12 +69,13 @@ class Lamina extends JPanel {
 		add(user_comunication);
 		botonAlta.addActionListener(new alta_pacientes());
 		botonBuscar.addActionListener(new buscar_pacientes());
+		botonTurnoAlta.addActionListener(new turno_nuevo());
 		setBackground(new Color(26, 105, 150));
 	}
 
 	private class alta_pacientes implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			MiMarcoAlta mimarco2 = new MiMarcoAlta();
+			MiMarcoAlta mimarco2 = new MiMarcoAlta(dniLista);
 			mimarco2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 	}
@@ -78,6 +87,15 @@ class Lamina extends JPanel {
 			mimarco3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		}
 	}
+
+	private class turno_nuevo implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			MiMarcoTurno mimarco4 = new MiMarcoTurno();
+			mimarco4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		}
+	}
+	private ArrayList<String> dniLista;
 }
 
 class dni_validation extends Exception {

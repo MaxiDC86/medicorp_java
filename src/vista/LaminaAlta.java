@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Properties;
 import javax.swing.*;
@@ -19,7 +20,8 @@ import controlador.ControladorCargaCoberturaMedica;
 
 public class LaminaAlta extends JPanel {
 
-	public LaminaAlta() {
+	public LaminaAlta(ArrayList<String> dniLista) {
+		this.dniLista = dniLista;
 
 		setLayout(new BorderLayout());
 		JPanel lamina_superior = new JPanel();
@@ -155,8 +157,8 @@ public class LaminaAlta extends JPanel {
 		return estadoCivil.getSelectedItem().toString();
 	}
 
-	public int getDni() {
-		return Integer.parseInt(dni.getText());
+	public String getDni() {
+		return dni.getText();
 	}
 	public String getDniString() {
 		return dni.getText();
@@ -204,6 +206,16 @@ public class LaminaAlta extends JPanel {
 	public void setDniIncorrecto(String error) {
 		this.dniIncorrecto.setText(error);
 	}
+	
+	public boolean dniYaCargado(String dniInput) {
+
+		for (String element : dniLista) {
+			if (element.contains(dniInput)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private JTextField dni;
 	private JTextField nombre;
@@ -219,6 +231,6 @@ public class LaminaAlta extends JPanel {
 	private JLabel dniIncorrecto;
 	private ControladorCamposAlta controlFoco;
 	private Font letra2 = new Font("Seif",Font.PLAIN,14);
-	
+	private ArrayList<String> dniLista;
 
 }

@@ -13,12 +13,12 @@ public class EjecutaNuevoPaciente {
 		miConexion = new Conexion();
 	}
 
-	public String NuevoPaciente(int dni, String apellido, String nombre, String email,
+	public String NuevoPaciente(String dni, String apellido, String nombre, String email,
 			String birthday,String sexo, String maritalStatus, String coberturaMedica) {
 		Connection accesoBBDD = miConexion.dameConexion();
 		try {
 			enviaNuevoPaciente = accesoBBDD.prepareStatement(enviaDatosPaciente);
-			enviaNuevoPaciente.setInt(1, dni);
+			enviaNuevoPaciente.setString(1, dni);
 			enviaNuevoPaciente.setString(2, apellido);
 			enviaNuevoPaciente.setString(3, nombre);
 			enviaNuevoPaciente.setString(4, sexo);

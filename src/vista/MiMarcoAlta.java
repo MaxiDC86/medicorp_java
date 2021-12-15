@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -10,7 +11,7 @@ import controlador.ControladorCargaCoberturaMedica;
 public class MiMarcoAlta extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	public MiMarcoAlta() {
+	public MiMarcoAlta(ArrayList<String> dniLista) {
 
 		setBounds(100, 200, 550, 400);
 		setTitle("MEDICORP SOLUTIONS - ALTA DE PACIENTES");
@@ -19,7 +20,7 @@ public class MiMarcoAlta extends JFrame {
 		setIconImage(miIcono);
 		setResizable(false);
 		setVisible(true);
-		LaminaAlta lamina2 = new LaminaAlta();
+		LaminaAlta lamina2 = new LaminaAlta(dniLista);
 		add(lamina2);
 		addWindowListener(new ControladorCargaCoberturaMedica(lamina2));
 	}
